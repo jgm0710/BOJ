@@ -1,7 +1,7 @@
 #include <iostream>
 #include<string>
 using namespace std;
-//주석
+//주석 실패
 
 string st_arr[1000];	//입력한 문자가 다
 int cnt[1000];	//단어가 몇번 나왔는지를 알려주기 위한 배열 
