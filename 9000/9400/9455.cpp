@@ -2,12 +2,11 @@
 using namespace std;
 //박스
 
-int grid[110][110];
+int grid[1000][1000];
 int main(){
 	int t;
 
 	cin >> t;
-
 	
 
 	while (t--) {
@@ -45,7 +44,7 @@ int main(){
 				}
 			}
 		}
-		cout << endl;
+		/*cout << endl;
 
 		for (int i = m - 1; i >= 0; i--) {
 			for (int j = n - 1; j >= 0; j--) {
@@ -53,7 +52,7 @@ int main(){
 			}
 			cout << endl;
 		}
-		cout << endl;
+		cout << endl;*/
 
 		cout << count << endl;
 
