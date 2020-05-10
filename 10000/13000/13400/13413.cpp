@@ -1,85 +1,42 @@
 #include <iostream>
 #include <string>
-#include <cstdlib>
 using namespace std;
 //오셀로 재배치
+//a[i]==b[i]이면 무시해도 무방함
+//a[i]!=b[i] 일때, w의 갯수, b의 갯수가 같은 갯수만큼 위치바꾸기 작업
+//a[i]!=b[i] 일때, 위치바꾸기가 할 수 없으면, 서로의 차이만큼 뒤집기 작업을 함.
+//방정식으로 세우면 a=4, b=2 이면
+//2 개 만큼 위치를 바꾸고, 두개의 차이인 2만큼 뒤집기 작업을 하게됨.
+//==b+(a-b)만큼의 작업을 하게됨. 
+//즉 총 작업 수는 a+b-b=a 해서 더 큰 수만큼이 총 작업수가 됨.
 
 
 
 int main() {
 	int t;
 	cin >> t;
+
 	while (t--) {
-		int n;	//단어 길이
-		int count=0;	//바꾼 횟수
-		int color_a[2] = { 0,0 };	//W,B 갯수 저장
-		int color_b[2] = { 0,0 };
-		int dif = 0;	//같은 색 돌 수 차이를 저장
-		
+		int n;
 		cin >> n;
+
+		int count_w=0, count_b=0;
 
 		string a, b;
 		cin >> a >> b;
 
-		//cout << endl;
-
-		for (int i = 0; i < n; i++) {	//a,b의 W,B 갯수 저장
-			if (a[i] == 'W')
-				color_a[0]++;
-			else if (a[i] == 'B')
-				color_a[1]++;
-
-			if (b[i] == 'W')
-				color_b[0]++;
-			else if (b[i] == 'B')
-				color_b[1]++;
-
-		}
-		cout << color_a[0] << " " << color_a[1] << " " << color_b[0]<<" "<<color_b[1]  <<endl;
-
-		dif = abs(color_a[0] - color_b[0]);
-
-		for (int i = 0; i < n; i++) {	//같은 색 돌의 갯수 맞춰줌
-			if (a[i] != b[i]) {
-				b[i] = a[i];
-				count++;
-				dif--;
-			}
-			if (dif == 0)
-				break;
-		}
-
-		/*cout << a << " " << b << endl;
-		cout << count << endl;*/
-
-		//위치 바꿔주기
-
 		for (int i = 0; i < n; i++) {
-			if (a[i] == b[i]) {
-				continue;
-			}
-			else {	//a[i]!=b[i]
-				//cout << a[i] << " " << b[i] << endl;
-				for (int j = i+1; j < n; j++) {
-					if (a[j] == b[j]) {
-						continue;
-					}
-					else {	//a[j]!=b[j]
-						//두 지점의 돌을 바꿔줌
-						/*cout << "dif" << endl;*/
-						int tmp = b[i];
-						b[i] = b[j];
-						b[j] = tmp;
-						count++;
-						break;
-					}
-				}
+			if (a[i] != b[i]) {
+				if (a[i] == 'B')
+					count_b++;
+				else if (a[i] == 'W')
+					count_w++;
 			}
 		}
 
-	//cout << a << " " << b << endl;
-	cout << count<< endl;
-
-
+		if (count_w > count_b)
+			cout << count_w << endl;
+		else
+			cout << count_b << endl;
 	}
 }
