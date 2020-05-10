@@ -2,41 +2,52 @@
 #include<string>
 using namespace std;
 //사이클 단어
-//a.find("tmp") == string::npos 를 사용해서 이긴다
 
-
-string word[100];
 int main(){
-	int n;
+	int n; //단어의 개수, 50보다 작음
+	int count = 0;	//서로 다른 단어의 개수
 	cin >> n;
 
-	int count=0;
-
-	int i = 0;
+	int i=0;
+	string tmp;
 	while (n--) {
 		string a;
 		cin >> a;
+		if (i == 0) {
+			tmp = a;
+			tmp += a;
+			i++;
+			count++;
+			continue;
+		}
 
-		bool add_flag = true;
+		bool change_flag = true;
 
-		for (int j = 0; word[j][0] != 0; j++) {
-			string tmp;
-			tmp = word[j];
-			tmp += word[j];
+		if (a.length() == tmp.length() / 2) {
+			for (int j = 0; j < a.length(); j++) {
+				string tmp2;
 
-			if (tmp.find(a) != string::npos) {		//word에 a가 포함되어있으면
-				add_flag = false;
-				break;
+				int start = j;
+				int end = j + a.length();
+
+				for (int k = start; k < end; k++) {
+					tmp2 += tmp[k];
+				}
+				if (tmp2 == a) {
+					/*cout << endl;
+					cout << tmp2 << " " << a << endl;
+					cout << endl;*/
+					change_flag = false;
+					break;
+				}
 			}
 		}
-		if (add_flag) {
-			word[i++] = a;
+
+		if (change_flag) {
+			tmp = a;
+			tmp += a;
 			count++;
 		}
 	}
-
-	/*for (i = 0; word[i][0] != 0; i++) {
-		cout << word[i] << endl;
-	}*/
 	cout << count;
 }
