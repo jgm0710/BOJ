@@ -44,6 +44,7 @@ int main() {
 
 		if (sum / 10 == 0)
 			break;
+
 	}
 	cout << count << endl;
 
